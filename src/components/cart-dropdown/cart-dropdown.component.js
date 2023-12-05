@@ -10,7 +10,7 @@ import './cart-dropdown.styles.scss';
 const CartDropDown = () => {
   const { cartItems } = useContext(CartContext);
 
-  const addProductAtCart = cartItems.map((item) => (
+  const addProductToCart = cartItems.map((item) => (
     <div key={item.id} className="cart-items">
       <CartItem cartItem={item} />
     </div>
@@ -18,7 +18,7 @@ const CartDropDown = () => {
 
   return (
     <div className="cart-dropdown-container">
-      {addProductAtCart}
+      {addProductToCart}
       <Button buttonType="inverted">ADD TO CART</Button>
     </div>
   );
