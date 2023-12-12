@@ -16,12 +16,13 @@ export const CategoriesProvider = ({ children }) => {
       const categoryMap = await getCategoriesAndDocuments();
 
       console.log(categoryMap);
+      setCategoriesMap(categoryMap);
     };
 
     getCategoriesMap();
   }, []);
 
-  const value = { products };
+  const value = { categoriesMap };
 
   return (
     <CategoriesContext.Provider value={value}>
