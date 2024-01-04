@@ -1,11 +1,10 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
 import App from '../src/App.js';
-import { UserProvider } from './contexts/user.context';
-import { CategoriesProvider } from './contexts/categories.context.js';
-import { CartProvider } from './contexts/cart.context.js';
+import { store } from './store/store.js';
 
 import './index.scss';
 
@@ -14,14 +13,10 @@ const root = createRoot(domNode);
 
 root.render(
   <StrictMode>
-    <BrowserRouter>
-      <UserProvider>
-        <CategoriesProvider>
-          <CartProvider>
-            <App />
-          </CartProvider>
-        </CategoriesProvider>
-      </UserProvider>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+          <App />
+      </BrowserRouter>
+    </Provider>
   </StrictMode>,
 );
