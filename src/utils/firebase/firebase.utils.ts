@@ -23,6 +23,7 @@ import {
   QueryDocumentSnapshot
 } from 'firebase/firestore';
 import { Unsubscribe } from 'redux';
+import { Category } from '../../store/categories/category.types';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -73,13 +74,15 @@ export const addCollectionAndDocuments = async<T extends objectToAdd>(
   console.log('done');
 };
 
-export const getCategoriesAndDocuments = async () => {
+export const getCategoriesAndDocuments = async (): Promise<Category[]> => {
   const collectionRef = collection(db, 'categories');
   const q = query(collectionRef);
 
   const querySnapShot = await getDocs(q);
 
-  return querySnapShot.docs.map((docSnapShot) => docSnapShot.data());
+  return querySnapShot.docs.map(
+    (docSnapShot) => docSnapShot.data() as Category
+  );
 };
 
 export type AdditionalDetails = {
